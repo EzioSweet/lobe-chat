@@ -8,9 +8,9 @@ RUN \
     if [ "${USE_CN_MIRROR:-false}" = "true" ]; then \
         sed -i "s/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g" "/etc/apk/repositories"; \
     fi \
-    # Add proxychains-ng package & update base package
+    # Add required package & update base package
     && apk update \
-    && apk add --no-cache proxychains-ng \
+    && apk add --no-cache bind-tools proxychains-ng \
     && apk upgrade --no-cache \
     # Add user nextjs to run the app
     && addgroup --system --gid 1001 nodejs \
@@ -109,7 +109,7 @@ ENV \
     # Anthropic
     ANTHROPIC_API_KEY="" ANTHROPIC_PROXY_URL="" \
     # Amazon Bedrock
-    AWS_ACCESS_KEY_ID="" AWS_SECRET_ACCESS_KEY="" AWS_REGION="" \
+    AWS_ACCESS_KEY_ID="" AWS_SECRET_ACCESS_KEY="" AWS_REGION="" AWS_BEDROCK_MODEL_LIST="" \
     # Azure OpenAI
     AZURE_API_KEY="" AZURE_API_VERSION="" AZURE_ENDPOINT="" AZURE_MODEL_LIST="" \
     # Baichuan
@@ -119,7 +119,7 @@ ENV \
     # Google
     GOOGLE_API_KEY="" GOOGLE_PROXY_URL="" \
     # Groq
-    GROQ_API_KEY="" GROQ_PROXY_URL="" \
+    GROQ_API_KEY="" GROQ_MODEL_LIST="" GROQ_PROXY_URL="" \
     # Minimax
     MINIMAX_API_KEY="" \
     # Mistral
@@ -127,7 +127,7 @@ ENV \
     # Moonshot
     MOONSHOT_API_KEY="" MOONSHOT_PROXY_URL="" \
     # Novita
-    NOVITA_API_KEY="" \
+    NOVITA_API_KEY="" NOVITA_MODEL_LIST="" \
     # Ollama
     OLLAMA_MODEL_LIST="" OLLAMA_PROXY_URL="" \
     # OpenAI
@@ -137,17 +137,21 @@ ENV \
     # Perplexity
     PERPLEXITY_API_KEY="" PERPLEXITY_PROXY_URL="" \
     # Qwen
-    QWEN_API_KEY="" \
+    QWEN_API_KEY="" QWEN_MODEL_LIST="" \
+    # SiliconCloud
+    SILICONCLOUD_API_KEY="" SILICONCLOUD_MODEL_LIST="" SILICONCLOUD_PROXY_URL="" \
     # Stepfun
     STEPFUN_API_KEY="" \
     # Taichu
     TAICHU_API_KEY="" \
     # TogetherAI
     TOGETHERAI_API_KEY="" TOGETHERAI_MODEL_LIST="" \
+    # Upstage
+    UPSTAGE_API_KEY="" \
     # 01.AI
-    ZEROONE_API_KEY="" \
+    ZEROONE_API_KEY="" ZEROONE_MODEL_LIST="" \
     # Zhipu
-    ZHIPU_API_KEY=""
+    ZHIPU_API_KEY="" ZHIPU_MODEL_LIST=""
 
 USER nextjs
 
